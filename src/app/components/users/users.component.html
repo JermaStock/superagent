@@ -1,0 +1,34 @@
+<div class="users">
+  <h4>Настройка учетных записей сотрудников контрагента</h4>
+
+  <div class="users__btns">
+    <button mat-fab extended>
+      <mat-icon>add</mat-icon>
+      Добавить
+    </button>
+    <button [disabled]="!selectedUsers.length" mat-fab extended (click)="toggleUsersState(false)">
+      <mat-icon>check_circle_outline</mat-icon>
+      Разблокировать
+    </button>
+    <button [disabled]="!selectedUsers.length" mat-fab extended (click)="toggleUsersState(true)">
+      <mat-icon>highlight_remove</mat-icon>
+      Заблокировать
+    </button>
+    <button (click)="showFilters = !showFilters" class="users__filter-btn" mat-fab extended>
+      <mat-icon>filter_list</mat-icon>
+      Фильтр
+    </button>
+  </div>
+
+  @if (showFilters) {
+    <app-filters class="users__filters"
+                 (filtersChange)="handleFilters($event)"
+                 (clearFilterChange)="handleClearFilters()"
+    />
+  }
+  <app-list class="users__list"
+            [users]="filteredUsers"
+            [isLoading]="isLoading()"
+            (selectionChange)="selectedUsers = $event"
+  />
+</div>

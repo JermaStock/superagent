@@ -1,0 +1,112 @@
+<div class="filters">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <form [formGroup]="filters" class="filters__fields">
+        <div class="filters__field">
+          <span class="filters__label">Логин</span>
+          <mat-form-field>
+            <input matInput type="text" formControlName="username" placeholder="Введите логин">
+            @if (username) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+            @if (filters.get('username')?.hasError('invalidCharacters')) {
+              <mat-error>
+                Допускаются только буквы (a-z, A-Z) и цифры (0-9).
+              </mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+       <div class="filters__field">
+         <span class="filters__label">Телефон</span>
+         <mat-form-field>
+           <span matTextPrefix>+7 &nbsp;</span>
+           <input type="tel" matInput formControlName="phone" mask="(000) 000-0000">
+           @if (phone) {
+             <button matSuffix mat-icon-button aria-label="Clear" (click)="phone=''">
+               <mat-icon>close</mat-icon>
+             </button>
+           }
+           @if (filters.get('phone')?.hasError('maxLength')) {
+             <mat-error>Номер должен быть не более 11 символов</mat-error>
+           }
+         </mat-form-field>
+       </div>
+
+        <div class="filters__field">
+          <span class="filters__label">Дата создания</span>
+          <mat-form-field>
+            <input matInput placeholder="Выберите дату" [matDatepicker]="createdAtPicker" formControlName="createdAt">
+            <mat-datepicker-toggle matIconSuffix [for]="createdAtPicker"></mat-datepicker-toggle>
+            <mat-datepicker #createdAtPicker></mat-datepicker>
+            @if (createdAt) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="createdAt=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="filters__field">
+          <span class="filters__label">Статус</span>
+          <mat-form-field>
+            <mat-select formControlName="status">
+              @for (status of statuses; track status) {
+                <mat-option [value]="status.value">{{ status.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="filters__field">
+          <span class="filters__label">E-mail</span>
+          <mat-form-field>
+            <input matInput type="email" formControlName="email" placeholder="Введите почту">
+            @if (email) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+            @if (filters.get('email')?.hasError('email')) {
+              <mat-error>Введите корректный адрес электронной почты</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="filters__field">
+          <span class="filters__label">Роль</span>
+          <mat-form-field>
+            <mat-select formControlName="role">
+              @for (role of roles; track role) {
+                <mat-option [value]="role.value">{{ role.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="filters__field">
+          <span class="filters__label">Дата изменения</span>
+          <mat-form-field>
+            <input matInput placeholder="Выберите дату" [matDatepicker]="updatedAtPicker" formControlName="updatedAt">
+            <mat-datepicker-toggle matIconSuffix [for]="updatedAtPicker"></mat-datepicker-toggle>
+            <mat-datepicker #updatedAtPicker></mat-datepicker>
+            @if (updatedAt) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="updatedAt=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+          </mat-form-field>
+        </div>
+      </form>
+
+      <div class="filters__btns">
+        <button [disabled]="filters.invalid" mat-flat-button (click)="applyFilters()">Применить</button>
+        <button mat-stroked-button (click)="clearFilter(false)">Отмена</button>
+        <button mat-stroked-button (click)="clearFilter(true)">Сбросить</button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

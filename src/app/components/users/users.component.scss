@@ -1,0 +1,18 @@
+.users {
+  margin-inline: 2rem;
+
+  &__filters {
+    display: block;
+    margin-bottom: 3rem;
+  }
+
+  &__filter-btn {
+    margin-left: auto;
+  }
+
+  &__btns {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
