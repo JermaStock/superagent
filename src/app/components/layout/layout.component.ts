@@ -4,6 +4,7 @@ import {SidebarComponent} from "../sidebar/sidebar.component";
 import {FiltersComponent} from "../users/filters/filters.component";
 import {ListComponent} from "../users/list/list.component";
 import {UsersComponent} from "../users/users.component";
+import {MenuService} from "../../services/menu.service";
 
 @Component({
   selector: 'app-layout',
@@ -16,8 +17,13 @@ import {UsersComponent} from "../users/users.component";
     UsersComponent
   ],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css'
+  styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
+
+  constructor(
+    readonly menuService: MenuService,
+  ) {
+  }
 
 }

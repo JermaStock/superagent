@@ -1,1 +1,31 @@
-<mat-drawer mode="side" [(opened)]="isOpen">Drawer content</mat-drawer>
+<div class="sidebar">
+  <div class="sidebar-top">
+    <div class="sidebar-top__role">Суперагент</div>
+    <div class="sidebar-top__org">Банк ВТБ(ПАО)</div>
+  </div>
+
+  <div class="sidebar-bottom">
+    <ul class="sidebar-bottom__menu">
+      <li class="sidebar-bottom__menu-item">
+        <h6 class="sidebar-bottom__title">
+          <mat-icon>cases</mat-icon>
+          Управление
+        </h6>
+        <ul class="sidebar-bottom__list">
+          <li class="sidebar-bottom__item">
+            Карточка контрагента
+          </li>
+          <li class="sidebar-bottom__item">
+            Договоры контрагента
+          </li>
+        </ul>
+      </li>
+      <li class="sidebar-bottom__menu-item">
+        <h6 class="sidebar-bottom__title">
+          <mat-icon>people_alt</mat-icon>
+          Субагенты
+        </h6>
+      </li>
+    </ul>
+  </div>
+</div>

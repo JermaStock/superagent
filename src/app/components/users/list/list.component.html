@@ -72,6 +72,98 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
+    <ul class="users__list">
+      @for (user of paginatedUsers(); track user?.id) {
+        <li class="users__item">
+          <ul class="users-info">
+            <li class="users-info__item users-info__item--inner">
+              <ul class="users-info__left">
+                <li class="users-info__item">
+                  <div class="users__title">
+                    Действия
+                  </div>
+                  <div class="users__content">
+                    <button mat-mini-fab>
+                      <mat-icon>keyboard_controls</mat-icon>
+                    </button>
+                  </div>
+                </li>
+                <li class="users-info__item">
+                  <div class="users__title">
+                    E-mail
+                  </div>
+                  <div class="users__content">
+                    {{user.email}}
+                  </div>
+                </li>
+                <li class="users-info__item">
+                  <div class="users__title">
+                    Роли
+                  </div>
+                  <div class="users__content">
+                    {{ user.role }}
+                  </div>
+                </li>
+                <li class="users-info__item">
+                  <div class="users__title">
+                    Дата создания
+                  </div>
+                  <div class="users__content">
+                    {{ user.createdAt | date: 'dd.MM.yyyy' }}
+                  </div>
+                </li>
+                <li class="users-info__item">
+                  <div class="users__title">
+                    Наличие ЭП
+                  </div>
+                  <div class="users__content">
+                    <img width="24" height="24" [ngSrc]="'assets/images/' + (user?.hasEp ? 'check.png' : 'cross.png')">
+                  </div>
+                </li>
+              </ul>
+              <ul class="users-info__right">
+                <li class="users-info__item">
+                  <div class="users__title">
+                    Логин
+                  </div>
+                  <div class="users__content">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(user) : null"
+                                  [checked]="selection.isSelected(user)"
+                    />
+                    {{ user.username }}
+                  </div>
+                </li>
+                <li class="users-info__item">
+                  <div class="users__title">
+                    Телефон
+                  </div>
+                  <div class="users__content">
+                    {{user?.phone}}
+                  </div>
+                </li>
+                <li class="users-info__item">
+                  <div class="users__title">
+                    Дата изменения
+                  </div>
+                  <div class="users__content">
+                    {{ user.updatedAt | date: 'dd.MM.yyyy' }}
+                  </div>
+                </li>
+                <li class="users-info__item">
+                  <div class="users__title">
+                    Статус
+                  </div>
+                  <div class="users__content">
+                    <span class="users__status" [class.users__status--alt]="user.status === 'Заблокирован'">{{ user.status }}</span>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      }
+    </ul>
     <ng-container *ngTemplateOutlet="pagination" />
   } @else {
     <mat-spinner/>

@@ -1,0 +1,30 @@
+.content {
+  display: flex;
+  gap: 1rem;
+}
+
+.sidebar {
+  display: block;
+  max-width: 16rem;
+  width: 100%;
+  background: #666F78;
+  min-height: 100dvh;
+
+  @media (max-width: 1025px) {
+    position: absolute;
+    z-index: 9999;
+    top: -100%;
+    left: 0;
+    max-width: 100dvw;
+    transition: transform 0.2s ease-in-out;
+
+    &--opened {
+      transform: translateY(calc(100% + 70px));
+    }
+  }
+}
+
+.users {
+  margin-top: 2rem;
+  width: 100%;
+}

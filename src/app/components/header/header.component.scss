@@ -1,4 +1,48 @@
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   padding: 1rem 2.5rem;
   background-color: #DA2032;
+
+
+  &__auth {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+
+    @media (max-width: 1025px) {
+      display: none;
+    }
+
+    &-icon {
+      width: 2rem;
+      height: 2rem;
+      background: #c4c4c4;
+      border-radius: 100%;
+    }
+
+    &-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+  }
+
+  &__burger {
+    display: none;
+    cursor: pointer;
+
+    @media (max-width: 1025px) {
+      display: block;
+    }
+
+    mat-icon {
+      color: #fff;
+    }
+
+    button {
+      background: transparent;
+    }
+  }
 }

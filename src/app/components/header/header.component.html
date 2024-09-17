@@ -1,5 +1,18 @@
 <header class="header">
   <div class="header__auth">
-    <mat-icon fontIcon="account_circle" />
+    <div class="header__auth-icon">
+      <img [ngSrc]="'assets/images/nophoto.png'" height="32" width="32">
+    </div>
+    <div class="header__auth-info">
+      <div class="header__auth-name">Иванов</div>
+      <div class="header__auth-name">Администратор</div>
+    </div>
+  </div>
+
+  <div class="header__burger">
+    <button mat-mini-fab (click)="menuService.isOpen = !menuService.isOpen">
+      <mat-icon>menu</mat-icon>
+    </button>
   </div>
 </header>
+
